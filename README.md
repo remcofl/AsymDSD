@@ -26,7 +26,7 @@ If you find this repository useful, please cite our paper:
 @article{leijenaar2025asymmetric,
   title={Asymmetric Dual Self-Distillation for 3D Self-Supervised Representation Learning},
   author={Leijenaar, Remco F and Kasaei, Hamidreza},
-  journal={arXiv preprint arXiv:2506.21724},
+  journal={Advances in Neural Information Processing Systems},
   year={2025}
 }
 ```
