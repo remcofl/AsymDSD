@@ -1,20 +1,65 @@
-# AsymDSD
+<!-- markdownlint-disable MD033 MD041 -->
+---
 
-## Asymmetric Dual Self-Distillation for 3D Representation Learning
-[![ArXiv](https://img.shields.io/badge/arXiv-2506.21724-b31b1b.svg)](https://arxiv.org/abs/2506.21724)
-[![Conference](https://img.shields.io/badge/NeurIPS-2025-green.svg)](https://neurips.cc/Conferences/2025)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Python](https://img.shields.io/badge/python-3.11-blue.svg)]()
+<h1 align="center">
+AsymDSD
+</h1>
 
-- 📄 **Paper**: [Asymmetric Dual Self-Distillation for 3D Self-Supervised Representation Learning](https://arxiv.org/abs/2506.21724)
-- 🎓 **Conference**: *NeurIPS 2025* (accepted)
-- 🧑🏻‍💼 **Authors**: Remco F. Leijenaar, Hamidreza Kasaei
+<h3 align="center">
+Asymmetric Dual Self-Distillation for 3D Self-Supervised Representation Learning
+</h3>
 
 <p align="center">
-  <img src="assets/main_overview.png" alt="AsymDSD Visualization", width="800"/>
-</p>  
+  <a href="https://arxiv.org/abs/2506.21724">
+    <img src="https://img.shields.io/badge/PDF-arXiv-b31b1b?logo=arxiv" alt="PDF">
+  </a>
+  <a href="https://neurips.cc/Conferences/2025">
+    <img src="https://img.shields.io/badge/NeurIPS-2025-4c1?style=flat-square" alt="Conference">
+  </a>
+  <a href="https://github.com/remcofl/AsymDSD">
+    <img src="https://img.shields.io/badge/Code-GitHub-blue?style=flat-square&logo=github" alt="Code">
+  </a>
+  <a href="https://huggingface.co/remcofl/AsymDSD">
+    <img src="https://img.shields.io/badge/🤗%20HuggingFace-Models-yellow?style=flat-square" alt="HuggingFace">
+  </a>
+  <a href="LICENSE">
+    <img src="https://img.shields.io/badge/License-MIT-97ca00?style=flat-square" alt="License">
+  </a>
+  <img src="https://img.shields.io/badge/Python-3.11-3776AB?style=flat-square" alt="Python">
+</p>
 
-> **Figure**: Overview of AsymDSD
+<div align="center">
+
+<table border="0" cellspacing="20">
+<tr>
+  <td align="center"
+    📄 <b>Paper</b><br>
+    <a href="https://arxiv.org/abs/2506.21724">arXiv:2506.21724</a>
+  </td>
+
+  <td align="center">
+    🎓 <b>Conference</b><br>
+    NeurIPS 2025 (accepted)
+  </td>
+
+  <td align="center">
+    🧑🏻‍💼 <b>Authors</b><br>
+    Remco F. Leijenaar<br>
+    Hamidreza Kasaei
+  </td>
+</tr>
+</table>
+
+</div>
+
+</div>
+<p align="center">
+  <img src="assets/main_overview.png" width="800" alt="AsymDSD overview"/>
+</p>
+
+<p align="center">
+  <sub>Overview of the Asymmetric Dual Self-Distillation (AsymDSD) framework.</sub>
+</p>
 
 ---
 
