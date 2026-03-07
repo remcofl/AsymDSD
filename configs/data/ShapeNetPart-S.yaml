@@ -1,0 +1,26 @@
+class_path: asymdsd.SupervisedZarrPCDataModule
+init_args:
+  dataset: ~/Datasets/ShapeNetPart.zarr
+  dataset_builder:
+    class_path: asymdsd.data.datasets_.ShapeNetPartBuilder
+    init_args:
+      data_path: ~/Datasets/shapenetcore_partanno_segmentation_benchmark_v0_normal.tar
+      num_pre_sample_points: 16384
+  num_workers_create_ds: 2
+  batch_size: 16 # Consider 16
+  max_num_points: 2048 # Fine-tuning (pre-training could be on 1024)
+  augmentation_transform:
+    - class_path: asymdsd.data.RandomAnisotropicScalePC
+      init_args:
+        scale_range: [0.8, 1.25]
+  subsample_mode: UNIFORM
+  patchify:
+    class_path: asymdsd.data.PatchifyPC
+    init_args:
+      num_patches: 128
+      patch_size: 32
+  num_workers_train: 8
+  num_workers_val_test: 8
+  pin_memory: true
+  supervision_key: [CLOUD_LABEL, SEMANTIC_LABELS]
+  deterministic_val_data: false

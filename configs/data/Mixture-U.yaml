@@ -1,0 +1,173 @@
+class_path: asymdsd.data.UnsupervisedZarrPCDataModule
+init_args:
+  name: Mixture
+  # (required, type: Union[str, Path, DatasetConfig, list[Union[str, Path, DatasetConfig]]])
+  dataset:
+    - dataset_path: data/ModelNet40.zarr
+      dataset_builder:
+        class_path: asymdsd.data.datasets_.ModelNet40Builder
+        init_args:
+          data_path: data/ModelNet40.zip
+          num_pre_sample_points: 16384
+      num_workers_create_ds: 24
+    - dataset_path: data/ShapeNetCore.v2.zarr
+      dataset_builder:
+        class_path: asymdsd.data.datasets_.ShapeNetCoreV2Builder
+        init_args:
+          data_path: data/ShapeNetCore.v2.zip
+          num_pre_sample_points: 16384
+      num_workers_create_ds: 24
+    - dataset_path: data/ScanObjectNN.zarr # 2048 points
+      dataset_builder:
+        class_path: asymdsd.data.datasets_.ScanObjectNNBuilder
+        init_args:
+          data_path: data/ScanObjectNN/h5_files.zip
+      split_map:
+        train:
+          - OBJ_BG_train
+          - OBJ_ONLY_train
+          - PB_T50_RS_train
+      num_workers_create_ds: 8
+    - dataset_path: data/ScannedObjects.zarr
+      dataset_builder:
+        class_path: asymdsd.data.datasets_.ScannedObjectsBuilder
+        init_args:
+          data_path: data/ScannedObjects
+      num_workers_create_ds: 8
+    - dataset_path: data/OmniObject3D.zarr
+      dataset_builder:
+        class_path: asymdsd.data.datasets_.OmniObject3DBuilder
+        init_args:
+          data_path: data/OmniObject3D.zip
+    - dataset_path: data/3D-FUTURE.zarr
+      dataset_builder:
+        class_path: asymdsd.data.datasets_.Future3DBuilder
+        init_args:
+          data_path: data/3D-Future
+          num_pre_sample_points: 16384
+      num_workers_create_ds: 32
+    - dataset_path: data/Toys4K.zarr
+      dataset_builder:
+        class_path: asymdsd.data.datasets_.Toys4KBuilder
+        init_args:
+          data_path: data/toys4k_obj_files.zip
+      num_workers_create_ds: 16
+    - dataset_path: data/S3DIS_objects.zarr
+      split_map:
+        train:
+          - Area_1
+          - Area_2
+          - Area_3
+          - Area_4
+          - Area_5
+          - Area_6
+      dataset_builder:
+        class_path: asymdsd.data.datasets_.S3DISObjectsBuilder
+        init_args:
+          data_path: data/Stanford3dDataset_v1.2.zip
+          fix_original_archive: false
+          num_pre_sample_points: 16384
+          min_num_points: 2048
+      num_workers_create_ds: 16
+    - dataset_path: data/SUNRGBD.zarr
+      dataset_builder:
+        class_path: asymdsd.data.datasets_.SunRGBDBuilder
+        init_args:
+          data_path: data/SUNRGBD
+          num_pre_sample_points: 16384
+          min_num_points: 2048
+      num_workers_create_ds: 4
+    - dataset_path: data/ABO.zarr
+      dataset_builder:
+        class_path: asymdsd.data.datasets_.ABOBuilder
+        init_args:
+          data_path: data/ABO
+          num_pre_sample_points: 16384
+      num_workers_create_ds: 16
+
+    - dataset_path: data/Objaverse.zarr
+
+  #   (type: int, default: 32)
+  batch_size: 128
+
+  #   (type: int, default: 1024)
+  max_num_points: 1024
+
+  #   (type: int, default: 0)
+  num_workers_train: 12
+
+  #   (type: int, default: 0)
+  num_workers_val_test: 0
+
+  #   (type: bool, default: False)
+  pin_memory: true
+
+  subsample_transform:
+    class_path: asymdsd.data.transforms.CropSampleArrays
+    init_args:
+      num_points_range:
+        - 1024
+        - 1024
+      crop_scale:
+        - 0.4
+        - 1.0
+      aspect_ratio:
+        - 0.33
+        - 3.0
+
+  augmentation_transform:
+    - class_path: asymdsd.data.RandomRotateAxisPC
+      init_args:
+        axis: "Z"
+    # - class_path: asymdsd.data.RandomFlipPC
+    #   init_args:
+    #     axis: [true, true, false]
+    - class_path: asymdsd.data.RandomAnisotropicScalePC
+      init_args:
+        scale_range: [0.8, 1.2]
+  # - class_path: asymdsd.data.RandomTranslatePC
+  #   init_args:
+  #     max_translate: 0.2
+
+  patchify:
+    global_patchify:
+      class_path: asymdsd.data.PatchifyPC
+      init_args:
+        num_patches: 64
+        patch_size: 32
+    local_patchify:
+      class_path: asymdsd.data.PatchifyPC
+      init_args:
+        num_patches: 16
+        patch_size: 32
+
+  multi_crop_config:
+    global_cfg:
+      num_crops: 2
+      num_points_range:
+        - 1024
+        - 1024
+      scale:
+        - 0.4
+        - 1.0
+      pre_crop_transform:
+        # class_path: asymdsd.data.NormalizePC
+        # class_path: asymdsd.data.pc_transforms.RandomRotateAxisPC
+        # init_args:
+        #   axis: Z
+    local_cfg:
+      num_crops: 4
+      num_points_range:
+        - 256
+        - 256
+      scale:
+        - 0.05
+        - 0.4
+      pre_crop_transform:
+        # class_path: asymdsd.data.NormalizePC
+        # class_path: asymdsd.data.pc_transforms.RandomRotateAxisPC
+        # init_args:
+        #   axis: Z
+
+  #   (type: int | None, default: null)
+  seed: # Use seed set by PyTorch Lightning

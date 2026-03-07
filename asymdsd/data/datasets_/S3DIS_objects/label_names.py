@@ -1,0 +1,16 @@
+LABEL_NAMES = [
+    "ceiling",
+    "floor",
+    "wall",
+    "beam",
+    "column",
+    "window",
+    "door",
+    "chair",
+    "table",
+    "bookcase",
+    "sofa",
+    "board",
+    "stairs",
+    "clutter",
+]

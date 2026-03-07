@@ -3,11 +3,11 @@ init_args:
   name: ShapeNetCore
   # (required, type: Union[str, Path, DatasetConfig, list[Union[str, Path, DatasetConfig]]])
   dataset:
-    dataset_path: data/ShapeNetCore.v2.zarr
+    dataset_path: /data/ShapeNetCore.v2.zarr
     dataset_builder:
       class_path: asymdsd.data.datasets_.ShapeNetCoreV2Builder
       init_args:
-        data_path: data/ShapeNetCore.v2.zip
+        data_path: /data/ShapeNetCore.v2.zip
         num_pre_sample_points: 16384
     num_workers_create_ds: 24
 

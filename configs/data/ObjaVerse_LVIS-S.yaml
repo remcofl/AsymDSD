@@ -1,0 +1,40 @@
+class_path: asymdsd.SupervisedZarrPCDataModule
+init_args:
+  dataset: /mnt/data/remco/Datasets/ObjaverseV2.zarr
+  dataset_builder:
+    class_path: asymdsd.data.datasets_.ObjaverseV2Builder
+    init_args:
+      data_path: /mnt/data/remco/Datasets/ObjaverseV2
+      skip_download_and_process: false
+      lvis_annotations: true
+      lvis_few_shot: 10
+      lvis_few_shot_seed: [0, 1, 2, 3, 4, 4, 5, 6, 7, 8, 9]
+  # split_map:
+  # train: "lvis"
+  supervision_key: "lvis_s10"
+  split_map:
+    train: "lvis_train_s10f0"
+    test: "lvis_val_s10f0"
+  num_workers_create_ds: 32
+  batch_size: 128
+  max_num_points: 1024
+  augmentation_transform:
+    - class_path: asymdsd.data.RandomRotateAxisPC
+      init_args:
+        axis: "Z"
+    # - class_path: asymdsd.data.RandomFlipPC
+    #   init_args:
+    #     axis: [true, true, false]
+    # - class_path: asymdsd.data.RandomAnisotropicScalePC
+    #   init_args:
+    #     scale_range: [0.9, 1.1]
+  subsample_mode: UNIFORM
+  patchify:
+    class_path: asymdsd.data.PatchifyPC
+    init_args:
+      num_patches: 64
+      patch_size: 32
+  num_workers_train: 4
+  num_workers_val_test: 4
+  pin_memory: true
+  deterministic_val_data: false

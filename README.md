@@ -227,6 +227,13 @@ For **few-shot** evaluation on **ModelNet40**:
 python shell_scripts/py/train_neural_classifier_all.py --model.encoder_ckpt_path <path_to_model>
 ```
 
+### Larger models
+Train 'base'-sized model on the Mixture dataset:
+  ```bash
+  sh shell_scripts/sh/train_ssrl.sh --model configs/ssrl/variants/model/ssrl_model_base.yaml --data configs/data/Mixture-U.yaml
+  ```
+
+
 > 🔍 You can find logged results on Weights and Biases. A link to the run is provided in the script output. 
 
 ## 4. 🤗 Pretrained Checkpoints
@@ -266,5 +273,5 @@ python shell_scripts/py/train_neural_classifier_all.py --runs <num_eval_runs> --
 Planned future releases:
 
 - [x] **Pre-trained Models**: Checkpoints for both small and base versions of **AsymDSD**, including **AsymDSD-CLS** and **AsymDSD-MPM**.
-- [ ] **Additional Datasets**: Dataset preparation modules including *Mixture* and *Objaverse*.
+- [x] **Additional Datasets**: Dataset preparation modules including *Mixture* and *Objaverse*.
 - [ ] **Training Scripts**: Full training configurations for larger model variants and part segmentation on ShapeNet-Part.

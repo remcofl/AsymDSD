@@ -1,0 +1,14 @@
+# <function create_zarr_ds at 0x7f9fa8f7dbc0>
+
+#   (required, type: <class 'DatasetBuilder'>)
+dataset_builder:
+  class_path: asymdsd.data.datasets_.ShapeNetCoreV2Builder
+  init_args:
+    data_path: data/ShapeNetCore.v2.zip
+    num_pre_sample_points: 16384
+    seed: 0
+
+#   (type: Union[str, Path, null], default: null)
+dataset_save_path: data/ShapeNetCore.v2.zarr
+
+num_workers: 16

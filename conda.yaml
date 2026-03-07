@@ -24,7 +24,11 @@ dependencies:
   - matplotlib
   - seaborn
   - h5py
+  - opencv
+  - psutil
+  - open3d
   - pip
   - pip:
       - fpsample==0.3.3
+      - objaverse
       - git+https://github.com/facebookresearch/pytorch3d.git@stable

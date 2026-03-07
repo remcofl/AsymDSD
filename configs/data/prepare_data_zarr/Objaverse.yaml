@@ -1,0 +1,18 @@
+# <function create_zarr_ds at 0x7f9fa8f7dbc0>
+
+#   (required, type: <class 'DatasetBuilder'>)
+dataset_builder:
+  class_path: asymdsd.data.datasets_.ObjaverseBuilder
+  init_args:
+    data_path: data/Objaverse
+    num_pre_sample_points: 16384
+    min_num_points: 2048
+    memory_limit_per_process_mb: 12288
+    processing_timeout_s: 120
+    skip_data_processing: false
+    seed: 0
+
+#   (type: Union[str, Path, null], default: null)
+dataset_save_path: data/Objaverse.zarr
+
+num_workers: 32

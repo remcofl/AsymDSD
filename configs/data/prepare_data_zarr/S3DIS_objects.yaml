@@ -1,0 +1,13 @@
+# <function create_zarr_ds at 0x7f9fa8f7dbc0>
+
+#   (required, type: <class 'DatasetBuilder'>)
+dataset_builder:
+  class_path: asymdsd.data.datasets_.S3DISObjectsBuilder
+  init_args:
+    data_path: data/Stanford3dDataset_v1.2.zip
+    fix_original_archive: false
+
+#   (type: Union[str, Path, null], default: null)
+dataset_save_path: data/S3DIS_objects.zarr
+
+num_workers: null

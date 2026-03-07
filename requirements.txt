@@ -18,3 +18,7 @@ h5py
 setuptools==69.5.1
 wheel
 huggingface_hub
+opencv-python
+objaverse
+psutil
+open3d

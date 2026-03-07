@@ -1,0 +1,13 @@
+# <function create_zarr_ds at 0x7f9fa8f7dbc0>
+
+#   (required, type: <class 'DatasetBuilder'>)
+dataset_builder:
+  class_path: asymdsd.data.datasets_.Toys4KBuilder
+  init_args:
+    data_path: data/toys4k_obj_files.zip
+    seed: 0
+
+#   (type: Union[str, Path, null], default: null)
+dataset_save_path: data/Toys4K.zarr
+
+num_workers: 16
