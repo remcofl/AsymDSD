@@ -429,15 +429,20 @@ You can prepare Objaverse in two ways:
 
 This option also prepares LVIS-based splits/labels used for LVIS few-shot evaluation.
 
+The first time:
 ```bash
+mkdir -p data/ObjaverseV2
 sh shell_scripts/sh/prepare_data_zarr.sh Objaverse_v2
 ```
+
+> Note: No files need to be manually downloaded into `data/ObjaverseV2` for this option. The script will handle downloading and preparing of the raw files.
 
 Config: `configs/data/prepare_data_zarr/Objaverse_v2.yaml`
 
 2. **Objaverse-v1**: use this option if you want to stay closer to replicating the Mixture dataset used in the paper.
 
 ```bash
+mkdir -p data/Objaverse
 sh shell_scripts/sh/prepare_data_zarr.sh Objaverse
 ```
 
