@@ -91,9 +91,8 @@ class ClassificationHead(nn.Module):
             raise ValueError(
                 "mlp_head_config must be specified when classification_mode is MLP."
             )
-        
-        self._init_classification_head(self.num_classes)
 
+        self._init_classification_head(self.num_classes)
 
     def _init_classification_head(self, num_classes: int):
         input_dim = (

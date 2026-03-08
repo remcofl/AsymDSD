@@ -358,7 +358,9 @@ class TransformerModule(nn.Module):
 
         x = self.norm(x)
 
-        return TransformerOutput(x=x, attn_weights=attn_weights, hidden_states=hidden_states)
+        return TransformerOutput(
+            x=x, attn_weights=attn_weights, hidden_states=hidden_states
+        )
 
     def enable_gradient_checkpointing(self) -> None:
         if self.config.allow_grad_ckpt:

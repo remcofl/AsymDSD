@@ -47,5 +47,5 @@ class MeanEntropyLoss(nn.Module):
             # Estimate of marginal H(p(z))
             mean_entropy = -(probs * probs.log()).sum()
 
-        mean_entropy = (probs**(-probs)).log().sum()
+        mean_entropy = (probs ** (-probs)).log().sum()
         return mean_entropy

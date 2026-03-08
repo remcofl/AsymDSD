@@ -110,13 +110,15 @@ class ShapeNetPartMeanIoU(Metric):
 
         iou = intersection / union
         iou[iou.isnan() & parts_mask] = 1.0
-        iou[~parts_mask] = torch.nan 
+        iou[~parts_mask] = torch.nan
 
         # Where union is 0, iou is nan. These segmentation classes should not contribute to the score.
         # Therefore, we can conviently use the nanmean.
         score = iou.nanmean(dim=1)
 
-        self.instance_score += score.sum() # Not mean, because this is numerically less stable.
+        self.instance_score += (
+            score.sum()
+        )  # Not mean, because this is numerically less stable.
         self.class_score.scatter_add_(0, instance_classes, score)
         self.instances_per_class.scatter_add_(
             0, instance_classes, torch.ones_like(self.instances_per_class)

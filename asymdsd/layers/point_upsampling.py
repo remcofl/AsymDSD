@@ -57,7 +57,7 @@ class PointUpsampling(nn.Module):
             dists.clamp_(min=0)
             weight = torch.reciprocal(dists + torch.finfo(dists.dtype).eps)
             weight /= weight.sum(dim=2, keepdim=True)
-            
+
             # No gather, as batch_indices does not require grad.
             batch_indices = (
                 torch.arange(B, dtype=torch.long, device=xyz.device)
@@ -67,9 +67,7 @@ class PointUpsampling(nn.Module):
 
             gathered_features = super_point_features[batch_indices, idx]
 
-            interp_points = torch.sum(
-                gathered_features * weight.unsqueeze(-1), dim=2
-            )
+            interp_points = torch.sum(gathered_features * weight.unsqueeze(-1), dim=2)
 
         new_points = (
             torch.cat([point_features, interp_points], dim=-1)

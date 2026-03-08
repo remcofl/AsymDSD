@@ -237,7 +237,9 @@ class NeuralClassifier(L.LightningModule):
 
         # Initialize topk accuracy metrics for training and validation based on report_topk
         for k in self.topk:
-            self.top_acc_train[str(k)] = torchmetrics.Accuracy(top_k=k, **accuracy_kwargs)
+            self.top_acc_train[str(k)] = torchmetrics.Accuracy(
+                top_k=k, **accuracy_kwargs
+            )
             self.top_acc_val[str(k)] = torchmetrics.Accuracy(top_k=k, **accuracy_kwargs)
 
         # Voting and mean accuracy always use top_k=1
@@ -433,7 +435,7 @@ class NeuralClassifier(L.LightningModule):
         # Update all topk accuracy metrics
         for metric in self.top_acc_val.values():
             metric(pred_logits, target_indices)
-            
+
         self.mean_acc_val(pred_logits, target_indices)
 
         pred_indices = torch.argmax(pred_logits, dim=-1)
@@ -493,8 +495,10 @@ class NeuralClassifier(L.LightningModule):
         # Log all topk metrics
         log_dict = {}
         for k, metric in self.top_acc_train.items():
-            log_dict[f"{self.benchmark}/train/{self.classifier_name}/top{k}_acc"] = metric
-        
+            log_dict[f"{self.benchmark}/train/{self.classifier_name}/top{k}_acc"] = (
+                metric
+            )
+
         self.log_dict(
             log_dict,
             on_step=False,
@@ -509,7 +513,7 @@ class NeuralClassifier(L.LightningModule):
             f"{self.benchmark}/val/{self.classifier_name}/loss": outputs["loss"],
             f"{self.benchmark}/val/{self.classifier_name}/mean_acc": self.mean_acc_val,
         }
-        
+
         # Add all topk metrics to log_dict
         for k, metric in self.top_acc_val.items():
             log_dict[f"{self.benchmark}/val/{self.classifier_name}/top{k}_acc"] = metric

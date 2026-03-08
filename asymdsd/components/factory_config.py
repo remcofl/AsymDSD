@@ -9,6 +9,6 @@ class FactoryConfig(ABC):
 
     def instantiate(self):
         return self.CLS(self)
-    
+
     def __call__(self, *args, **kwargs):
         return self.instantiate(*args, **kwargs)

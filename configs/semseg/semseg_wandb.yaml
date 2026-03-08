@@ -1,6 +1,6 @@
-class_path: asymsd.loggers.WandbLogger
+class_path: asymdsd.loggers.WandbLogger
 init_args:
-  project: AsymSD
+  project: asymdsd
   anonymous: true
   log_model: false
   offline: false

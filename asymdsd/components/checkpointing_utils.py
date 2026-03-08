@@ -47,8 +47,8 @@ def load_module_from_checkpoint(
             if state_key.startswith(key_dot):
                 updated_state_key = state_key.replace(key_dot, "")
                 if replace_key_part is not None:
-                   for old_key, new_key in replace_key_part.items():
-                       updated_state_key = updated_state_key.replace(old_key, new_key)
+                    for old_key, new_key in replace_key_part.items():
+                        updated_state_key = updated_state_key.replace(old_key, new_key)
                 module_state_dict[updated_state_key] = value
                 break
 

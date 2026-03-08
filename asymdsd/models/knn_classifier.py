@@ -37,7 +37,7 @@ class KNNClassifier(BaseEmbeddingClassifier):
         # Update all topk metrics
         for metric in self.top_acc_metrics.values():
             metric.update(counts, val_labels)
-            
+
         if self.log_mean_acc:
             self.mean_acc.update(counts, val_labels)
 

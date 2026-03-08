@@ -231,8 +231,6 @@ class NeuralClassifierEval(L.Callback):
 
         self.classifier.on_validation_epoch_start()
 
-
-
     def _evaluate(self):
         self._on_validation_start_callbacks(self.trainer)
 

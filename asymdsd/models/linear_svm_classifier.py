@@ -25,7 +25,7 @@ class LinearSVMClassifier(BaseEmbeddingClassifier):
         # Update all topk metrics
         for metric in self.top_acc_metrics.values():
             metric.update(scores, val_labels)
-            
+
         if self.log_mean_acc:
             self.mean_acc.update(scores, val_labels)
 

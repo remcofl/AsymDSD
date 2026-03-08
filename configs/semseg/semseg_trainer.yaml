@@ -16,7 +16,7 @@ profiler:
   # init_args:
   # dirpath: logs
   # filename: python_profiler
-  # class_path: asymsd.profiling.DefaultPyTorchProfiler
+  # class_path: asymdsd.profiling.DefaultPyTorchProfiler
   # init_args:
   #   dirpath: logs
   #   filename: torch_profiler
@@ -25,17 +25,17 @@ profiler:
 enable_checkpointing: null
 
 callbacks:
-  - class_path: asymsd.callbacks.DefaultTrainerCheckpoint
+  - class_path: asymdsd.callbacks.DefaultTrainerCheckpoint
     init_args:
       # save_last: true
       monitor: "{..}/val/{..}/top1_acc"
-  # - class_path: asymsd.callbacks.ConfusionMatrixLogger
+  # - class_path: asymdsd.callbacks.ConfusionMatrixLogger
   #   init_args:
   #     save_every_n_epochs: 5
-  # - class_path: asymsd.callbacks.evals.KNNEval
+  # - class_path: asymdsd.callbacks.evals.KNNEval
   #   init_args:
   #     train_datamodule:
-  #       class_path: asymsd.PointCloudData
+  #       class_path: asymdsd.PointCloudData
   #       init_args:
   #         dataset_path: ~/Datasets/ModelNet40_pc
   #         batch_size: 32
@@ -52,4 +52,4 @@ callbacks:
   #     map_avg_pooling: true
   #     map_cls_token: True
 
-  # - asymsd.callbacks.LogPointPatches
+  # - asymdsd.callbacks.LogPointPatches

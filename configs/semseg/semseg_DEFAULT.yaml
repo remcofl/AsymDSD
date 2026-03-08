@@ -34,11 +34,11 @@ trainer:
   # the default ``TensorBoardLogger`` if it is installed, otherwise ``CSVLogger``.
   # ``False`` will disable logging. If multiple loggers are provided, local files
   # (checkpoints, profiler traces, etc.) are saved in the ``log_dir`` of the first logger.
-  # Default: ``True``. (type: Union[Logger, Iterable[Logger], bool, null], default: null, known subclasses: lightning.pytorch.loggers.logger.DummyLogger, lightning.pytorch.loggers.CometLogger, lightning.pytorch.loggers.CSVLogger, lightning.pytorch.loggers.MLFlowLogger, lightning.pytorch.loggers.NeptuneLogger, lightning.pytorch.loggers.TensorBoardLogger, lightning.pytorch.loggers.WandbLogger, asymsd.loggers.WandbLogger)
+  # Default: ``True``. (type: Union[Logger, Iterable[Logger], bool, null], default: null, known subclasses: lightning.pytorch.loggers.logger.DummyLogger, lightning.pytorch.loggers.CometLogger, lightning.pytorch.loggers.CSVLogger, lightning.pytorch.loggers.MLFlowLogger, lightning.pytorch.loggers.NeptuneLogger, lightning.pytorch.loggers.TensorBoardLogger, lightning.pytorch.loggers.WandbLogger, asymdsd.loggers.WandbLogger)
   logger:
 
   # Add a callback or list of callbacks.
-  # Default: ``None``. (type: Union[List[Callback], Callback, null], default: null, known subclasses: lightning.Callback, lightning.pytorch.callbacks.BatchSizeFinder, lightning.pytorch.callbacks.Checkpoint, lightning.pytorch.callbacks.ModelCheckpoint, asymsd.callbacks.DefaultTrainerCheckpoint, lightning.pytorch.callbacks.OnExceptionCheckpoint, lightning.pytorch.callbacks.DeviceStatsMonitor, lightning.pytorch.callbacks.EarlyStopping, lightning.pytorch.callbacks.BaseFinetuning, lightning.pytorch.callbacks.BackboneFinetuning, lightning.pytorch.callbacks.GradientAccumulationScheduler, lightning.pytorch.callbacks.LambdaCallback, lightning.pytorch.callbacks.LearningRateFinder, lightning.pytorch.callbacks.LearningRateMonitor, lightning.pytorch.callbacks.ModelSummary, lightning.pytorch.callbacks.RichModelSummary, lightning.pytorch.callbacks.BasePredictionWriter, lightning.pytorch.callbacks.ProgressBar, lightning.pytorch.callbacks.RichProgressBar, lightning.pytorch.callbacks.TQDMProgressBar, lightning.pytorch.callbacks.Timer, lightning.pytorch.callbacks.ModelPruning, lightning.pytorch.callbacks.SpikeDetection, lightning.pytorch.callbacks.StochasticWeightAveraging, lightning.pytorch.callbacks.ThroughputMonitor, lightning.pytorch.cli.SaveConfigCallback, asymsd.callbacks.CrossEntropyDecompositionLogger, asymsd.callbacks.ConfusionMatrixLogger, asymsd.callbacks.EmbeddingClassifierEval, asymsd.callbacks.NeuralClassifierEval, asymsd.callbacks.LogGradients, asymsd.callbacks.LogPointPatches, asymsd.callbacks.PointCloudLASLogger, asymsd.callbacks.PredictionWriter, asymsd.callbacks.RecordMemory, asymsd.callbacks.SaveModelHparams)
+  # Default: ``None``. (type: Union[List[Callback], Callback, null], default: null, known subclasses: lightning.Callback, lightning.pytorch.callbacks.BatchSizeFinder, lightning.pytorch.callbacks.Checkpoint, lightning.pytorch.callbacks.ModelCheckpoint, asymdsd.callbacks.DefaultTrainerCheckpoint, lightning.pytorch.callbacks.OnExceptionCheckpoint, lightning.pytorch.callbacks.DeviceStatsMonitor, lightning.pytorch.callbacks.EarlyStopping, lightning.pytorch.callbacks.BaseFinetuning, lightning.pytorch.callbacks.BackboneFinetuning, lightning.pytorch.callbacks.GradientAccumulationScheduler, lightning.pytorch.callbacks.LambdaCallback, lightning.pytorch.callbacks.LearningRateFinder, lightning.pytorch.callbacks.LearningRateMonitor, lightning.pytorch.callbacks.ModelSummary, lightning.pytorch.callbacks.RichModelSummary, lightning.pytorch.callbacks.BasePredictionWriter, lightning.pytorch.callbacks.ProgressBar, lightning.pytorch.callbacks.RichProgressBar, lightning.pytorch.callbacks.TQDMProgressBar, lightning.pytorch.callbacks.Timer, lightning.pytorch.callbacks.ModelPruning, lightning.pytorch.callbacks.SpikeDetection, lightning.pytorch.callbacks.StochasticWeightAveraging, lightning.pytorch.callbacks.ThroughputMonitor, lightning.pytorch.cli.SaveConfigCallback, asymdsd.callbacks.CrossEntropyDecompositionLogger, asymdsd.callbacks.ConfusionMatrixLogger, asymdsd.callbacks.EmbeddingClassifierEval, asymdsd.callbacks.NeuralClassifierEval, asymdsd.callbacks.LogGradients, asymdsd.callbacks.LogPointPatches, asymdsd.callbacks.PointCloudLASLogger, asymdsd.callbacks.PredictionWriter, asymdsd.callbacks.RecordMemory, asymdsd.callbacks.SaveModelHparams)
   callbacks:
 
   # Runs n if set to ``n`` (int) else 1 if set to ``True`` batch(es)
@@ -208,17 +208,17 @@ trainer:
 # Linked arguments
 model:
 
-  #   (type: <class 'PointEncoder'>, default: {'class_path': 'asymsd.models.PointEncoder'}, known subclasses: asymsd.models.PointEncoder)
+  #   (type: <class 'PointEncoder'>, default: {'class_path': 'asymdsd.models.PointEncoder'}, known subclasses: asymdsd.models.PointEncoder)
   point_encoder:
-    class_path: asymsd.models.PointEncoder
+    class_path: asymdsd.models.PointEncoder
     init_args:
       patchify:
       cls_token:
       patch_embedding:
-        class_path: asymsd.layers.PatchEmbedding
+        class_path: asymdsd.layers.PatchEmbedding
         init_args:
           position_embedding:
-            class_path: asymsd.layers.PositionEmbeddingConfig
+            class_path: asymdsd.layers.PositionEmbeddingConfig
 
             # Linked arguments
             init_args:
@@ -226,7 +226,7 @@ model:
               act_layer: torch.nn.GELU
               normalize: false
           point_embedding:
-            class_path: asymsd.layers.MemEfficientPointMaxEmbeddingConfig
+            class_path: asymdsd.layers.MemEfficientPointMaxEmbeddingConfig
 
             # Linked arguments
             init_args:
@@ -243,7 +243,7 @@ model:
               process_num_chunks: 1
           normalize_patches: false
       encoder:
-        class_path: asymsd.layers.TransformerEncoderConfig
+        class_path: asymdsd.layers.TransformerEncoderConfig
         init_args:
           embed_dim: 384
           num_heads: 6
@@ -287,7 +287,7 @@ model:
   - 7
   - 11
 
-  # MLPConfig(dims: list[int], norm_layer: type[torch.nn.modules.normalization.LayerNorm] | type[asymsd.layers.normalization.RMSNorm] | type[torch.nn.modules.batchnorm.BatchNorm1d] | type[asymsd.layers.normalization.TransposeBatchNorm1d] | type[torch.nn.modules.linear.Identity] | None = None, act_layer: type[torch.nn.modules.activation.ReLU] | type[torch.nn.modules.activation.LeakyReLU] | type[torch.nn.modules.activation.GELU] | type[torch.nn.modules.activation.SiLU] | type[torch.nn.modules.activation.Tanh] | type[torch.nn.modules.linear.Identity] | type[asymsd.layers.activation.GEGLU] | type[asymsd.layers.activation.SwiGLU] = <class 'torch.nn.modules.activation.GELU'>, dropout_p: float = 0.0, bias: bool = True)
+  # MLPConfig(dims: list[int], norm_layer: type[torch.nn.modules.normalization.LayerNorm] | type[asymdsd.layers.normalization.RMSNorm] | type[torch.nn.modules.batchnorm.BatchNorm1d] | type[asymdsd.layers.normalization.TransposeBatchNorm1d] | type[torch.nn.modules.linear.Identity] | None = None, act_layer: type[torch.nn.modules.activation.ReLU] | type[torch.nn.modules.activation.LeakyReLU] | type[torch.nn.modules.activation.GELU] | type[torch.nn.modules.activation.SiLU] | type[torch.nn.modules.activation.Tanh] | type[torch.nn.modules.linear.Identity] | type[asymdsd.layers.activation.GEGLU] | type[asymdsd.layers.activation.SwiGLU] = <class 'torch.nn.modules.activation.GELU'>, dropout_p: float = 0.0, bias: bool = True)
   segmentation_head_config:
 
     #   (type: list[int], default: [512, 256])
@@ -295,8 +295,8 @@ model:
     - 512
     - 256
 
-    #   (type: type[LayerNorm] | type[RMSNorm] | type[BatchNorm1d] | type[TransposeBatchNorm1d] | type[Identity] | None, default: <class 'asymsd.layers.normalization.TransposeBatchNorm1d'>)
-    norm_layer: asymsd.layers.TransposeBatchNorm1d
+    #   (type: type[LayerNorm] | type[RMSNorm] | type[BatchNorm1d] | type[TransposeBatchNorm1d] | type[Identity] | None, default: <class 'asymdsd.layers.normalization.TransposeBatchNorm1d'>)
+    norm_layer: asymdsd.layers.TransposeBatchNorm1d
 
     #   (type: type[ReLU] | type[LeakyReLU] | type[GELU] | type[SiLU] | type[Tanh] | type[Identity] | type[GEGLU] | type[SwiGLU], default: <class 'torch.nn.modules.activation.GELU'>)
     act_layer: torch.nn.GELU
@@ -319,18 +319,18 @@ model:
   #   (type: int | None, default: null)
   num_seg_classes:
 
-  #   (type: Union[FarthestPointSubSamplePC, Identity, null], default: null, known subclasses: asymsd.components.FarthestPointSubSamplePC, torch.nn.Identity, asymsd.layers.IdentityMultiArg, asymsd.layers.IdentityPassThrough)
+  #   (type: Union[FarthestPointSubSamplePC, Identity, null], default: null, known subclasses: asymdsd.components.FarthestPointSubSamplePC, torch.nn.Identity, asymdsd.layers.IdentityMultiArg, asymdsd.layers.IdentityPassThrough)
   subsampling_transform:
 
-  #   (type: Union[RandomRotatePC, RandomRotateAxisPC, RandomUniformScalePC, RandomAnisotropicScalePC, RandomTranslatePC, Sequence[RandomRotatePC | RandomRotateAxisPC | RandomUniformScalePC | RandomAnisotropicScalePC | RandomTranslatePC], null], default: {'class_path': 'asymsd.components.RandomRotateAxisPC'}, known subclasses: asymsd.components.RandomRotatePC, asymsd.components.RandomRotateAxisPC, asymsd.components.RandomUniformScalePC, asymsd.components.RandomAnisotropicScalePC, asymsd.components.RandomTranslatePC)
+  #   (type: Union[RandomRotatePC, RandomRotateAxisPC, RandomUniformScalePC, RandomAnisotropicScalePC, RandomTranslatePC, Sequence[RandomRotatePC | RandomRotateAxisPC | RandomUniformScalePC | RandomAnisotropicScalePC | RandomTranslatePC], null], default: {'class_path': 'asymdsd.components.RandomRotateAxisPC'}, known subclasses: asymdsd.components.RandomRotatePC, asymdsd.components.RandomRotateAxisPC, asymdsd.components.RandomUniformScalePC, asymdsd.components.RandomAnisotropicScalePC, asymdsd.components.RandomTranslatePC)
   aug_transform:
-    class_path: asymsd.components.RandomRotateAxisPC
+    class_path: asymdsd.components.RandomRotateAxisPC
     init_args:
       axis: Z
 
-  #   (type: NormalizePC | NormalizeUnitSpherePC | None, default: {'class_path': 'asymsd.components.NormalizeUnitSpherePC'}, known subclasses: asymsd.components.NormalizePC, asymsd.components.NormalizeUnitSpherePC)
+  #   (type: NormalizePC | NormalizeUnitSpherePC | None, default: {'class_path': 'asymdsd.components.NormalizeUnitSpherePC'}, known subclasses: asymdsd.components.NormalizePC, asymdsd.components.NormalizeUnitSpherePC)
   norm_transform:
-    class_path: asymsd.components.NormalizeUnitSpherePC
+    class_path: asymdsd.components.NormalizeUnitSpherePC
 
   #   (type: int | None, default: null)
   steps_per_epoch:
@@ -347,13 +347,13 @@ model:
   #   (type: str, default: neural)
   classifier_name: neural
 
-# One or more arguments specifying "class_path" and "init_args" for any subclass of asymsd.components.OptimizerSpec. (type: <class 'OptimizerSpec'>, default: {'class_path': 'asymsd.components.SGDSpec', 'init_args': {'weight_decay': 0.0}}, known subclasses: asymsd.components.AdamWSpec, asymsd.components.SGDSpec)
+# One or more arguments specifying "class_path" and "init_args" for any subclass of asymdsd.components.OptimizerSpec. (type: <class 'OptimizerSpec'>, default: {'class_path': 'asymdsd.components.SGDSpec', 'init_args': {'weight_decay': 0.0}}, known subclasses: asymdsd.components.AdamWSpec, asymdsd.components.SGDSpec)
 optim:
-  class_path: asymsd.components.SGDSpec
+  class_path: asymdsd.components.SGDSpec
   init_args:
     momentum: 0.9
     lr:
-      class_path: asymsd.components.CosineAnnealingWarmupSchedule
+      class_path: asymdsd.components.CosineAnnealingWarmupSchedule
       init_args:
         base_value: 0.005
         final_value: 1.0e-07

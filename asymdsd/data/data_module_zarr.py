@@ -418,12 +418,18 @@ class SupervisedZarrPCDataModule(SupervisedPCDataModule):
         self.class_labels = {}
         for key in self.supervision_key:
             if key in label_names:
-                if isinstance(key, str):
+                if (
+                    isinstance(key, str)
+                    and key != PCFieldKey.CLOUD_LABEL
+                    and key != PCFieldKey.SEMANTIC_LABELS
+                    and key != PCFieldKey.INSTANCE_LABELS
+                ):
                     replace_key = PCFieldKey.CLOUD_LABEL
                     self.replace_cloud_label = key
                 else:
                     replace_key = key
                 self.class_labels[replace_key] = ClassLabels(label_names[key])
+
 
         self._num_classes = {}
         self._label_names = {}

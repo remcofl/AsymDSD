@@ -11,11 +11,15 @@ class LogGradients(L.Callback):
         self.log_freq = log_freq
         self.log_graph = log_graph
 
-
     def on_train_start(self, trainer: L.Trainer, pl_module: L.LightningModule) -> None:
         loggers = trainer.loggers
 
         for logger in loggers:
             if isinstance(logger, WandbLogger):
-                logger.watch(pl_module, log="gradients", log_freq=self.log_freq, log_graph=self.log_graph)
+                logger.watch(
+                    pl_module,
+                    log="gradients",
+                    log_freq=self.log_freq,
+                    log_graph=self.log_graph,
+                )
                 break

@@ -22,3 +22,4 @@ opencv-python
 objaverse
 psutil
 open3d
+gdown

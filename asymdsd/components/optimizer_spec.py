@@ -16,6 +16,7 @@ _DEFAULT_LR_SCHEDULE = lazy_instance(
     final_value=1e-7,
 )
 
+
 class OptimizerSpec(ABC):
     @init_lazy_defaults
     def __init__(
@@ -26,9 +27,8 @@ class OptimizerSpec(ABC):
         self.lr = lr
         self.wd = weight_decay
 
-        self.base_lr = 1. if callable(lr) else lr
-        self.initial_wd = weight_decay(0) if callable(
-            weight_decay) else weight_decay
+        self.base_lr = 1.0 if callable(lr) else lr
+        self.initial_wd = weight_decay(0) if callable(weight_decay) else weight_decay
 
     def get_lr_scheduler(self, optimizer: Optimizer) -> LRScheduler | None:
         return LambdaLR(optimizer, self.lr) if callable(self.lr) else None
@@ -48,19 +48,17 @@ class OptimizerSpec(ABC):
 
 class AdamWSpec(OptimizerSpec):
     def __init__(
-        self,
-        betas: tuple[float, float] = (0.9, 0.999),
-        **optim_kwargs
+        self, betas: tuple[float, float] = (0.9, 0.999), **optim_kwargs
     ) -> None:
         super().__init__(**optim_kwargs)
         self.betas = betas
 
-    def get_optim(self, params: Params, lr_multiplier: float = 1.) -> Optimizer:
+    def get_optim(self, params: Params, lr_multiplier: float = 1.0) -> Optimizer:
         return AdamW(
             params,
             lr=self.base_lr * lr_multiplier,
             weight_decay=self.initial_wd,  # Is initial weight decay
-            betas=self.betas
+            betas=self.betas,
         )
 
     @property
@@ -69,20 +67,16 @@ class AdamWSpec(OptimizerSpec):
 
 
 class SGDSpec(OptimizerSpec):
-    def __init__(
-        self,
-        momentum: float = 0.9,
-        **optim_kwargs
-    ) -> None:
+    def __init__(self, momentum: float = 0.9, **optim_kwargs) -> None:
         super().__init__(**optim_kwargs)
         self.momentum = momentum
 
-    def get_optim(self, param: Params, lr_multiplier: float = 1.) -> Optimizer:
+    def get_optim(self, param: Params, lr_multiplier: float = 1.0) -> Optimizer:
         return SGD(
             param,
             lr=self.base_lr * lr_multiplier,
             weight_decay=self.initial_wd,
-            momentum=self.momentum
+            momentum=self.momentum,
         )
 
     @property

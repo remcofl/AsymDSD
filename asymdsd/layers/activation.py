@@ -1,7 +1,14 @@
 import torch
 from torch import nn
 
-ActivationLayerStd = type[nn.ReLU] | type[nn.LeakyReLU] | type[nn.GELU] | type[nn.SiLU] | type[nn.Tanh] | type[nn.Identity]
+ActivationLayerStd = (
+    type[nn.ReLU]
+    | type[nn.LeakyReLU]
+    | type[nn.GELU]
+    | type[nn.SiLU]
+    | type[nn.Tanh]
+    | type[nn.Identity]
+)
 
 
 class GLU(nn.Module):

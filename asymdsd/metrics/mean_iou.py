@@ -81,7 +81,7 @@ class MeanIoU(Metric):
 
         self.instance_score += score.mean()
         self.num_batches += 1
-        
+
         if instance_classes is not None:
             self.class_score.scatter_add_(0, instance_classes, score)
             self.instances_per_class.scatter_add_(
